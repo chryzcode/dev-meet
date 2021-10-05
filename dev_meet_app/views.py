@@ -90,14 +90,16 @@ def rooms(request, pk):
     context['participants'] = participants
     return render(request, 'room.html', context)
 
-def userProfile(request, pk):
+def userProfile(request, username):
     context = {}
-    user = User.objects.get(id=pk)
+    user = get_object_or_404(User, username=username)
     rooms = user.room_set.all()
-    room_message = user.message_set.all()
+    room_messages = user.message_set.all()
+    topics = Topic.objects.all()
     context['user'] = user
     context['rooms'] = rooms
-    context['room_message'] = room_message
+    context['room_messages'] = room_messages
+    context['topics'] = topics
     return render(request, 'profile.html', context)
 
 @login_required(login_url='login')

@@ -9,11 +9,11 @@
 </style>
 
 
-<h1>{{user.username }}</h1>
+<h1>{{user.username}}</h1>
 
 <div class="profile-container">
     <div>
-
+        {% include 'topics_component.html' %}
     </div>
 
     <div>
@@ -21,7 +21,7 @@
     </div>
 
     <div>
-        
+        {% include 'activity_component.html' %}
     </div>
 </div>
 
