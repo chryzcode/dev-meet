@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from .models import Room, Topic, Message
 from django.shortcuts import get_object_or_404
-from .forms import RoomForm
+from .forms import RoomForm, UserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -165,3 +165,16 @@ def deleteMessage(request, pk):
         message.delete()
         return redirect('home')
     return render(request, 'delete.html', {'obj':message})
+
+@login_required(login_url='login')
+def updateUser(request, username):
+    context = {}
+    user = get_object_or_404(User, username=username)
+    form = UserForm(instance= request.user)  
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance = request.user)
+        if form.is_valid():
+            form.save() 
+            return redirect('user-profile', username)
+    context['form'] = form
+    return render(request, 'update_user.html', context)
