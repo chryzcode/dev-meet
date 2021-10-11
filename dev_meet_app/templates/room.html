@@ -75,25 +75,28 @@
                 </a>
               </div>
               <div class="room__details">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, tenetur laudantium? Dicta repellendus
-                rerum consectetur, voluptatem repudiandae eum ea porro cupiditate provident nulla, deserunt, ab ipsum
-                corporis laboriosam deleniti molestias?
+                {{room.description}}
               </div>
-              <span class="room__topics">JavaScript</span>
+              <span class="room__topics">{{room.topic}}</span>
             </div>
             <div class="room__conversation">
               <div class="threads scroll">
+
+                {% for message in room_messages %}
                 <div class="thread">
                   <div class="thread__top">
                     <div class="thread__author">
-                      <a href="#" class="thread__authorInfo">
+                      <a href="{% url 'user-profile' message.user.username  %}" class="thread__authorInfo">
                         <div class="avatar avatar--small">
                           <img src="https://randomuser.me/api/portraits/men/37.jpg" />
                         </div>
-                        <span>@dennis_ivy</span>
+                        <span>@{{message.user.username}}</span>
                       </a>
-                      <span class="thread__date">3 day ago</span>
+                      <span class="thread__date">{{message.created|timesince}} ago</span>
                     </div>
+
+                    {% if request.user == message.user %}
+                    <a href="{% url 'delete-message' message.id %}">
                     <div class="thread__delete">
                       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                         <title>remove</title>
@@ -102,90 +105,14 @@
                         ></path>
                       </svg>
                     </div>
+                    </a>
+                    {% endif %}
                   </div>
                   <div class="thread__details">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis, deserunt cum quibusdam aliquam
-                    nihil unde et impedit, quaerat! Corporis praesentium aspernatur autem laboriosam natus similique,
-                    adipisci nam maxime.
+                    {{message.body}}
                   </div>
                 </div>
-                <div class="thread">
-                  <div class="thread__top">
-                    <div class="thread__author">
-                      <a href="#" class="thread__authorInfo">
-                        <div class="avatar avatar--small">
-                          <img src="https://randomuser.me/api/portraits/men/37.jpg" />
-                        </div>
-                        <span>@dennis_ivy</span>
-                      </a>
-                      <span class="thread__date">3 day ago</span>
-                    </div>
-                    <div class="thread__delete">
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                        <title>remove</title>
-                        <path
-                          d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="thread__details">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis, deserunt cum quibusdam aliquam
-                    nihil unde et impedit, sequi, modi quos porro iure enim suscipit itaque earum tenetur praesentium
-                    quaerat! Corporis praesentium aspernatur autem laboriosam natus similique, adipisci nam maxime.
-                  </div>
-                </div>
-                <div class="thread">
-                  <div class="thread__top">
-                    <div class="thread__author">
-                      <a href="#" class="thread__authorInfo">
-                        <div class="avatar avatar--small">
-                          <img src="https://randomuser.me/api/portraits/men/37.jpg" />
-                        </div>
-                        <span>@dennis_ivy</span>
-                      </a>
-                      <span class="thread__date">3 day ago</span>
-                    </div>
-                    <div class="thread__delete">
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                        <title>remove</title>
-                        <path
-                          d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="thread__details">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis, deserunt cum quibusdam aliquam
-                    nihil unde et impedit, sequi, modi quos porro iure enim suscipit itaque earum tenetur praesentium
-                    quaerat! Corporis praesentium aspernatur autem laboriosam natus similique, adipisci nam maxime.
-                  </div>
-                </div>
-                <div class="thread">
-                  <div class="thread__top">
-                    <div class="thread__author">
-                      <a href="#" class="thread__authorInfo">
-                        <div class="avatar avatar--small">
-                          <img src="https://randomuser.me/api/portraits/men/37.jpg" />
-                        </div>
-                        <span>@dennis_ivy</span>
-                      </a>
-                      <span class="thread__date">3 day ago</span>
-                    </div>
-                    <div class="thread__delete">
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                        <title>remove</title>
-                        <path
-                          d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="thread__details">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis, deserunt cum quibusdam aliquam
-                    nihil unde et impedit, sequi, modi quos porro iure enim suscipit itaque earum tenetur praesentium.
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </div>
           </div>
