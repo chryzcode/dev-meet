@@ -4,7 +4,7 @@
             <div class="roomListRoom__header">
               <a href="{% url 'user-profile' room.host.username %}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                  {% if room.host.avater %}
+                  {% if room.host.avatar %}
                   <img src="{{room.host.avatar.url}}" />
                   {% else %}
                   <img src="{% static 'images/avatar.svg' %}" />

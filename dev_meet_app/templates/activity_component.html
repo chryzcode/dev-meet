@@ -9,7 +9,7 @@
             <div class="activities__boxHeader roomListRoom__header">
               <a href="{% url 'user-profile' message.user.username %}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                  {% if message.user.avater %}
+                  {% if message.user.avatar %}
                   <img src="{{message.user.avatar.url}}" />
                   {% else %}
                   <img src="{% static 'images/avatar.svg' %}" />
