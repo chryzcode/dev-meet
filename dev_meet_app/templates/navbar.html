@@ -23,7 +23,11 @@
           <div class="header__user">
             <a href="{% url 'user-profile' user.username %}">
               <div class="avatar avatar--medium active">
+                {% if user.avatar %}
                 <img src="{{user.avatar.url}}" />
+                {% else %}
+                <img src="{% static 'images/avatar.svg' %}" />
+                {% endif %}
               </div>
               <p>{{user.first_name}} {{user.last_name}}<span>@{{user.username}}</span></p>
             </a>
