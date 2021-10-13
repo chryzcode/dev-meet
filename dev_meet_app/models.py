@@ -6,7 +6,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150)
     email = models.EmailField(unique=True)
     bio = models.TextField()
-    avatar = models.ImageField(null = True, default="avatar.svg")
+    avatar = models.ImageField(null = True, default="https://res.cloudinary.com/chryzhub/image/upload/v1632356842/projects/default_profile_img_ee5jrv.png")
 
     USERNAME_FIELD = 'email'
     
