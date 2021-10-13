@@ -15,15 +15,15 @@ def loginPage(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
+        email = request.POST.get('email')
         password = request.POST.get('password')
 
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except:
             messages.error(request, 'User does not exist')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
@@ -171,9 +171,10 @@ def updateUser(request, username):
     user = get_object_or_404(User, username=username)
     form = UserForm(instance= request.user)  
     if request.method == 'POST':
-        form = UserForm(request.POST, instance = request.user)
+        form = UserForm(request.POST, request.FILES, instance = request.user)
         if form.is_valid():
             form.save() 
+            username = request.POST.get('username')
             return redirect('user-profile', username)
     context['form'] = form
     return render(request, 'update_user.html', context)
