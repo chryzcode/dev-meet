@@ -12,6 +12,7 @@ gunicorn = "*"
 whitenoise = "*"
 djangorestframework = "*"
 pillow = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 

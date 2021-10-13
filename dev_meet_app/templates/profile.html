@@ -25,7 +25,9 @@
           <div class="profile__about">
             <h3>About</h3>
             <p>
+              {% if user.bio %}
               {{user.bio}}
+              {% endif %}
             </p>
           </div>
         </div>
