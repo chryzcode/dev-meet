@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dev_meet_app.apps.DevMeetAppConfig',
+    'dev_meet_app',
     'rest_framework',
 
     'cloudinary_storage',
@@ -83,24 +83,24 @@ WSGI_APPLICATION = 'dev_meet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'deoit6nkrioiq7',
-#         'USER': 'hyzdxhruxckfgh',
-#         'PASSWORD': '98037a905055e7788b881774db88da493f7ed3e82dadfa77e3bfd11b6a07a3f9',
-#         'HOST': 'ec2-3-221-100-217.compute-1.amazonaws.com',
-#         'POST': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'deoit6nkrioiq7',
+        'USER': 'hyzdxhruxckfgh',
+        'PASSWORD': '98037a905055e7788b881774db88da493f7ed3e82dadfa77e3bfd11b6a07a3f9',
+        'HOST': 'ec2-3-221-100-217.compute-1.amazonaws.com',
+        'POST': '5432',
+    }
+}
 
 
 # Password validation

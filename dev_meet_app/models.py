@@ -11,6 +11,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     
     REQUIRED_FIELDS = ['username']
+    
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)
