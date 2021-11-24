@@ -70,6 +70,7 @@ def home(request):
     context['room_messages'] = room_messages
     return render(request, 'home.html', context)
 
+@login_required(login_url='login')
 def rooms(request, pk):
     context = {}
     room = get_object_or_404(Room, pk=pk)
