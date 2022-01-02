@@ -70,25 +70,28 @@ def home(request):
     context['room_messages'] = room_messages
     return render(request, 'home.html', context)
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def rooms(request, pk):
     context = {}
     room = get_object_or_404(Room, pk=pk)
     room_messages = room.message_set.all().order_by('-created')
     participants = room.participants.all()
-    if request.method == 'POST':
-        message = Message.objects.create(
-            user = request.user,
-            room = room,
-            body = request.POST.get('body')
-        )
-        room.participants.add(request.user)
-        return redirect('room', pk=room.id)
-
+    context['participants'] = participants
     context['room'] = room
     context['room_messages'] = room_messages
-    context['participants'] = participants
+    if request.method == 'POST':
+        if request.user.is_authenticated:  
+            message = Message.objects.create(
+                user = request.user,
+                room = room,
+                body = request.POST.get('body')
+            )
+            room.participants.add(request.user)
+            return redirect('room', pk=room.id)
+        else:
+            return redirect('login')
     return render(request, 'room.html', context)
+    
 
 def userProfile(request, username):
     context = {}
