@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import dj_database_url
 import django_heroku
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = ['dev-meet.herokuapp.com', '127.0.0.1', 'localhost']
 
@@ -92,12 +93,11 @@ WSGI_APPLICATION = 'dev_meet.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deoit6nkrioiq7',
-        'USER': 'hyzdxhruxckfgh',
-        'PASSWORD': '98037a905055e7788b881774db88da493f7ed3e82dadfa77e3bfd11b6a07a3f9',
-        'HOST': 'ec2-3-221-100-217.compute-1.amazonaws.com',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        'HOST': 'localhost',
         'POST': '5432',
     }
 }
@@ -157,9 +157,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'chryzhub',
-    'API_KEY': '889363813899634',
-    'API_SECRET': 'DEnPnYS-ozwwGsj85hlKycvqb-I'
+    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": config("CLOUDINARY_API_KEY"),
+    "API_SECRET": config("CLOUDINARY_API_SECRET"),
 }
 
 
